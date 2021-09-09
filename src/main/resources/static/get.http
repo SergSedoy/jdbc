@@ -1,2 +1,2 @@
-GET http://localhost:8080/products/fetch-product?name=serg
+GET http://localhost:8080/products/fetch-product?name=oleg
 Accept: application/json

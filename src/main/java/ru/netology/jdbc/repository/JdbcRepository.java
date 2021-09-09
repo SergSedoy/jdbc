@@ -14,12 +14,14 @@ import java.util.stream.Collectors;
 
 @Repository
 public class JdbcRepository {
+    private String script = read();
 
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    private String read(String scriptFileName) {
-        try (InputStream is = new ClassPathResource(scriptFileName).getInputStream();
+
+    private static String read() {
+        try (InputStream is = new ClassPathResource("myScript.sql").getInputStream();
              BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is))) {
             return bufferedReader.lines().collect(Collectors.joining("\n"));
         } catch (IOException e) {
@@ -28,8 +30,6 @@ public class JdbcRepository {
     }
 
     public String getProductName(String name) {
-        String script = read("myScript.sql");
-
         return namedParameterJdbcTemplate.queryForObject(script,
                 Map.of("name", name),
                 (rs, rowNum) -> (rs.getString("product_name")));
