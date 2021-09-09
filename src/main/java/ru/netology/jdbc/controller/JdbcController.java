@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 
 @RestController
 public class JdbcController {
-    private JdbcRepository repository;
+    private final JdbcRepository repository;
 
     public JdbcController(JdbcRepository repository) {
         this.repository = repository;
