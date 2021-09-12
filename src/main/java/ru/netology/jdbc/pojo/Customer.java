@@ -1,4 +1,4 @@
-package ru.netology.jdbc;
+package ru.netology.jdbc.pojo;
 
 public class Customer {
     private int id;
